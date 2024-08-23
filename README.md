@@ -32,6 +32,7 @@ Estudiante: Sebastián Kravetz
         - [query] limit
             - ej: /api/v1/orders?limit={n: integer}
     - /api/v1/orders/{orderId: string}
+    - /api/v1/orders/{orderId: string}/status
 
    ```bash
 # peticiones cURL
@@ -39,6 +40,7 @@ Estudiante: Sebastián Kravetz
 curl -X GET 'localhost:8080/api/v1/orders'
 curl -X GET 'localhost:8080/api/v1/orders?limit=2'
 curl -X GET 'localhost:8080/api/v1/orders/{orderId}'
+curl -X GET 'localhost:8080/api/v1/orders/{orderId}/status'
 
 ```
 

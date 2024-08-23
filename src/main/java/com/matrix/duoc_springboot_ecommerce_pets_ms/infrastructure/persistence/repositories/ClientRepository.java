@@ -7,6 +7,7 @@ import jakarta.annotation.PostConstruct;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -24,6 +25,18 @@ public class ClientRepository {
     InputStream inputStream = TypeReference.class.getResourceAsStream("/data/clients.json");
     try {
       List<Client> parsedData = mapper.readValue(inputStream, typeRef);
+      parsedData =
+          parsedData.stream()
+              .map(
+                  client ->
+                      Client.builder()
+                          .clientId(UUID.randomUUID().toString())
+                          .clientFirstName(client.getClientFirstName())
+                          .clientLastName(client.getClientLastName())
+                          .clientPhone(client.getClientPhone())
+                          .clientEmail(client.getClientEmail())
+                          .build())
+              .toList();
       clientsList.addAll(parsedData);
     } catch (Exception e) {
       throw new RuntimeException(e);

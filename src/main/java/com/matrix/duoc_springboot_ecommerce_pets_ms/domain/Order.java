@@ -12,7 +12,8 @@ import lombok.*;
 public class Order {
   private String orderId;
   private String clientId;
-  private List<Product> products;
+  private OrderStatus orderStatus;
+  private List<String> productsInBasketIds;
   private LocalDateTime orderSubmittedDate;
   private PaymentType paymentType;
   private BigDecimal totalAmount;

@@ -22,7 +22,7 @@ public class ClientsService {
     return this.clientRepository.getAllClients();
   }
 
-  public Optional<Client> getClientById(Integer clientId) {
+  public Optional<Client> getClientById(String clientId) {
     return this.clientRepository.getAllClients().stream()
         .filter(client -> client.getClientId().equals(clientId))
         .findFirst();

@@ -24,7 +24,7 @@ public class ClientController {
   }
 
   @GetMapping("/{clientId}")
-  public ResponseEntity<Client> getClientById(@PathVariable("clientId") Integer clientId) {
+  public ResponseEntity<Client> getClientById(@PathVariable("clientId") String clientId) {
 
     Optional<Client> foundClient = this.clientsService.getClientById(clientId);
 
