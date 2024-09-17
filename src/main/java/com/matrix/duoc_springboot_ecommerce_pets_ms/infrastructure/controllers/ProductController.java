@@ -1,7 +1,10 @@
 package com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers;
 
 import com.matrix.duoc_springboot_ecommerce_pets_ms.application.services.ProductService;
-import com.matrix.duoc_springboot_ecommerce_pets_ms.domain.Product;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.dto.NewProductDTO;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.Product;
+import jakarta.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -34,5 +37,15 @@ public class ProductController {
   @GetMapping("/{productId}/stock")
   public ResponseEntity<Integer> getStockByProductId(@PathVariable("productId") String productId) {
     return ResponseEntity.ok(this.productService.getStockOfProductId(productId));
+  }
+
+  @PostMapping()
+  public ResponseEntity<HashMap<String, String>> createNewProduct(
+      @Valid @RequestBody NewProductDTO newProductDTO) {
+    String newProductId = this.productService.createNewProduct(newProductDTO);
+    HashMap<String, String> response = new HashMap<>();
+    response.put("new_product_id", newProductId);
+
+    return ResponseEntity.ok(response);
   }
 }

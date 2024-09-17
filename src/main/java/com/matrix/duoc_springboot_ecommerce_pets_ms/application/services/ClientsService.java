@@ -1,7 +1,7 @@
 package com.matrix.duoc_springboot_ecommerce_pets_ms.application.services;
 
-import com.matrix.duoc_springboot_ecommerce_pets_ms.domain.Client;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.ClientRepository;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.Client;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -15,16 +15,14 @@ public class ClientsService {
   private final ClientRepository clientRepository;
 
   public List<Client> getClients(Integer limit) {
-    return this.clientRepository.getClients(limit);
+    return this.clientRepository.findAll();
   }
 
   public List<Client> getAllClients() {
-    return this.clientRepository.getAllClients();
+    return this.clientRepository.findAll();
   }
 
-  public Optional<Client> getClientById(String clientId) {
-    return this.clientRepository.getAllClients().stream()
-        .filter(client -> client.getClientId().equals(clientId))
-        .findFirst();
+  public Optional<Client> getClientById(Long clientId) {
+    return this.clientRepository.findById(clientId);
   }
 }
