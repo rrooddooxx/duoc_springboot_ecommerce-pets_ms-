@@ -1,7 +1,7 @@
 package com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers;
 
 import com.matrix.duoc_springboot_ecommerce_pets_ms.application.services.ClientsService;
-import com.matrix.duoc_springboot_ecommerce_pets_ms.domain.Client;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.Client;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
@@ -24,7 +24,7 @@ public class ClientController {
   }
 
   @GetMapping("/{clientId}")
-  public ResponseEntity<Client> getClientById(@PathVariable("clientId") String clientId) {
+  public ResponseEntity<Client> getClientById(@PathVariable("clientId") Long clientId) {
 
     Optional<Client> foundClient = this.clientsService.getClientById(clientId);
 
