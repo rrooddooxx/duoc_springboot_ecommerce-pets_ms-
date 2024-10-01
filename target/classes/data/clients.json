@@ -1,0 +1,62 @@
+[
+  {
+    "clientFirstName": "Juan",
+    "clientLastName": "Pérez",
+    "clientEmail": "juan.perez@gmail.com",
+    "clientPhone": "+56912345678"
+  },
+  {
+    "clientFirstName": "María",
+    "clientLastName": "Rodríguez",
+    "clientEmail": "maria.rodriguez@gmail.com",
+    "clientPhone": "+56987654321"
+  },
+  {
+    "clientFirstName": "Carlos",
+    "clientLastName": "Soto",
+    "clientEmail": "carlos.soto@gmail.com",
+    "clientPhone": "+56911223344"
+  },
+  {
+    "clientFirstName": "Valentina",
+    "clientLastName": "González",
+    "clientEmail": "valentina.gonzalez@gmail.com",
+    "clientPhone": "+56955667788"
+  },
+  {
+    "clientFirstName": "Diego",
+    "clientLastName": "Rojas",
+    "clientEmail": "diego.rojas@gmail.com",
+    "clientPhone": "+56999887766"
+  },
+  {
+    "clientFirstName": "Camila",
+    "clientLastName": "Fernández",
+    "clientEmail": "camila.fernandez@gmail.com",
+    "clientPhone": "+56988776655"
+  },
+  {
+    "clientFirstName": "José",
+    "clientLastName": "Martínez",
+    "clientEmail": "jose.martinez@gmail.com",
+    "clientPhone": "+56977665544"
+  },
+  {
+    "clientFirstName": "Antonia",
+    "clientLastName": "Espinoza",
+    "clientEmail": "antonia.espinoza@gmail.com",
+    "clientPhone": "+56966554433"
+  },
+  {
+    "clientFirstName": "Felipe",
+    "clientLastName": "Morales",
+    "clientEmail": "felipe.morales@gmail.com",
+    "clientPhone": "+56955443322"
+  },
+  {
+    "clientFirstName": "Francisca",
+    "clientLastName": "Castillo",
+    "clientEmail": "francisca.castillo@gmail.com",
+    "clientPhone": "+56944332211"
+  }
+]
