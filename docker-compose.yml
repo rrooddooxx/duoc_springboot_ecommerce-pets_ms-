@@ -1,0 +1,11 @@
+services:
+  pets-ecommerce-ms:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - spring.datasource.url=jdbc:oracle:thin:@matrix_high?TNS_ADMIN=/app/wallet
+      - spring.datasource.username=PETSECOMMERCE_MS
+      - spring.datasource.password=P3t5@AppB4ck3nd
+    ports:
+      - "8080:8080"

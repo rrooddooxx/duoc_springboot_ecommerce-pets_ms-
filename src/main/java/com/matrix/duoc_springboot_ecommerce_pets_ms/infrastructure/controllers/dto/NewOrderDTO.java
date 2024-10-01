@@ -6,11 +6,16 @@ import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.r
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.Min;
-import lombok.Data;
-
 import java.time.LocalDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class NewOrderDTO {
   @JsonProperty("client_id")
   @Min(1)

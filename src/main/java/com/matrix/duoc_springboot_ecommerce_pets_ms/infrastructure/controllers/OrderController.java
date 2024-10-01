@@ -3,6 +3,7 @@ package com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.application.services.OrderService;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.dto.NewOrderDTO;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.dto.UpdateOrderStatusDTO;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.mapper.OrderControllerMapper;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.Order;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.OrderStatus;
 import jakarta.validation.Valid;
@@ -11,6 +12,8 @@ import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,23 +24,24 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
 
   private final OrderService orderService;
+  private final OrderControllerMapper resMapper;
 
   @GetMapping()
-  public ResponseEntity<List<Order>> getAllOrders(
-      @RequestParam(required = false) Optional<Integer> limit) {
-    List<Order> orders =
-        limit.isPresent() ? orderService.getOrders(limit.get()) : orderService.getAllOrders();
+  public ResponseEntity<CollectionModel<EntityModel<Order>>> getAllOrders() {
+    List<Order> orders = orderService.getAllOrders();
 
-    return orders.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(orders);
+    return orders.isEmpty()
+        ? ResponseEntity.notFound().build()
+        : ResponseEntity.ok(resMapper.mapListToCollection(resMapper.mapListToEntities(orders)));
   }
 
   @GetMapping("/{orderId}")
-  public ResponseEntity<Order> getOrderById(@PathVariable("orderId") String orderId) {
+  public ResponseEntity<EntityModel<Order>> getOrderById(@PathVariable("orderId") String orderId) {
     Optional<Order> foundOrder = orderService.getOrderById(orderId);
 
-    return foundOrder.isEmpty()
-        ? ResponseEntity.notFound().build()
-        : ResponseEntity.ok(foundOrder.get());
+    return foundOrder
+        .map(order -> ResponseEntity.ok(resMapper.mapDomainToEntityModel(order)))
+        .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   @GetMapping("/{orderId}/status")
