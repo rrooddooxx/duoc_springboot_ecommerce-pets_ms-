@@ -10,6 +10,7 @@
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/controllers/dto/NewProductDTO.java
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/controllers/dto/UpdateOrderStatusDTO.java
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/controllers/mapper/OrderControllerMapper.java
+/Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/controllers/mapper/ProductControllerMapper.java
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/persistence/repositories/ClientRepository.java
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/persistence/repositories/OrderRepository.java
 /Users/sebastiankravetz/Dev/Learning/Java/duoc_bim1/EXP1/duoc_springboot_ecommerce-pets_ms/src/main/java/com/matrix/duoc_springboot_ecommerce_pets_ms/infrastructure/persistence/repositories/ProductRepository.java

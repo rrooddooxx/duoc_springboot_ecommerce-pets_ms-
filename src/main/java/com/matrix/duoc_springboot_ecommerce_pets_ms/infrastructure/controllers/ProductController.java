@@ -2,12 +2,14 @@ package com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers;
 
 import com.matrix.duoc_springboot_ecommerce_pets_ms.application.services.ProductService;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.dto.NewProductDTO;
+import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.controllers.mapper.ProductControllerMapper;
 import com.matrix.duoc_springboot_ecommerce_pets_ms.infrastructure.persistence.repositories.entities.Product;
 import jakarta.validation.Valid;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,35 +19,36 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
   private final ProductService productService;
+  private final ProductControllerMapper resMapper;
 
   @GetMapping()
-  public ResponseEntity<List<Product>> getAllProducts(
-      @RequestParam("limit") Optional<Integer> limit) {
-    return limit.isPresent()
-        ? ResponseEntity.ok(this.productService.getAllProducts(limit.get()))
-        : ResponseEntity.ok(this.productService.getAllProducts());
+  public ResponseEntity<CollectionModel<EntityModel<Product>>> getAllProducts() {
+    return ResponseEntity.ok(
+        resMapper.mapListToCollection(
+            resMapper.mapListToEntities(this.productService.getAllProducts())));
   }
 
   @GetMapping("/{productId}")
-  public ResponseEntity<Product> getProductById(@PathVariable("productId") String productId) {
+  public ResponseEntity<EntityModel<Product>> getProductById(
+      @PathVariable("productId") String productId) {
     Optional<Product> foundProduct = this.productService.getProductById(productId);
     return foundProduct.isPresent()
-        ? ResponseEntity.ok(foundProduct.get())
+        ? ResponseEntity.ok(resMapper.mapDomainToEntityModel(foundProduct.get()))
         : ResponseEntity.notFound().build();
   }
 
   @GetMapping("/{productId}/stock")
-  public ResponseEntity<Integer> getStockByProductId(@PathVariable("productId") String productId) {
-    return ResponseEntity.ok(this.productService.getStockOfProductId(productId));
+  public ResponseEntity<EntityModel<Map<String, Integer>>> getStockByProductId(
+      @PathVariable("productId") String productId) {
+    return ResponseEntity.ok(
+        resMapper.mapProductStockToEntityModel(
+            this.productService.getStockOfProductId(productId), productId));
   }
 
   @PostMapping()
-  public ResponseEntity<HashMap<String, String>> createNewProduct(
+  public ResponseEntity<EntityModel<Map<String, String>>> createNewProduct(
       @Valid @RequestBody NewProductDTO newProductDTO) {
     String newProductId = this.productService.createNewProduct(newProductDTO);
-    HashMap<String, String> response = new HashMap<>();
-    response.put("new_product_id", newProductId);
-
-    return ResponseEntity.ok(response);
+    return ResponseEntity.ok(resMapper.mapNewProductToEntityModel(newProductId));
   }
 }
